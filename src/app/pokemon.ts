@@ -1,4 +1,8 @@
 export interface Pokemon {
-    message : string;
-    status : string;
+    sprites: any;
+    id: number;
+    img: string;
+    name: string;
+    height: number;
+    weight: number;
 }

@@ -1,7 +1,14 @@
 <div class="mt-3">
-    <img [src]="pokemon.message" width="500px" class="shadow-lg rounded">
-    
-    <div class="btn btn-danger" (click)="loadPokemon()">
-        Próximo
-    </div>
+    <img [src]="pokemon.img" width="500px" class="shadow-lg rounded">
+    <p>{{pokemon.id}}</p>
+    <p>{{pokemon.name}}</p>
+    <p>{{pokemon.height}}</p>
+    <p>{{pokemon.weight}}</p>
+   
 </div>
+<button class="btn btn-warning" (click)="anteriorPokemon()">
+    Anterior
+</button>
+<button class="btn btn-danger" (click)="proximoPokemon()">
+    Próximo
+</button>

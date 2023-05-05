@@ -10,18 +10,49 @@ import { PokemonService } from '../pokemon.service';
 export class PokemonComponent {
   pokemon: Pokemon = {} as Pokemon;
 
-  constructor(private service: PokemonService) {}
+  private proximoId: number = 1;
+
+  constructor(private service: PokemonService) { }
+
+  ngOnInit(): void {
+    this.loadPokemon();
+  }
 
   loadPokemon() {
+    this.service.idPesquisa = this.proximoId.toString();
     this.service.getPokemon().subscribe(
       {
-        next: data => this.pokemon = data
+        next: data => {
+          this.pokemon = data;
+          this.pokemon.img = data.sprites.other.home.front_default;
+        }
       }
     );
   }
 
-  
+  proximoPokemon() {
+    this.proximoId = this.proximoId + 1;
+    this.service.idPesquisa = this.proximoId.toString();
+    this.service.getPokemon().subscribe(
+      {
+        next: data => {
+          this.pokemon = data;
+          this.pokemon.img = data.sprites.other.home.front_default;
+        }
+      }
+    );
+  }
 
-  
-
+  anteriorPokemon() {
+    this.proximoId = this.proximoId - 1;
+    this.service.idPesquisa = this.proximoId.toString();
+    this.service.getPokemon().subscribe(
+      {
+        next: data => {
+          this.pokemon = data;
+          this.pokemon.img = data.sprites.other.home.front_default;
+        }
+      }
+    );
+  }
 }
